@@ -1,0 +1,49 @@
+#posters {
+    margin-top: 50px;
+    display: block;
+    text-align: center;
+    background-color: rgba(21,23,30,0.91);
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.poster-block {
+    display: inline-grid;
+    width: 15%;
+    margin: 0;
+    vertical-align: top;
+}
+.poster-block img{
+    width: 100%;
+}
+
+.poster-block:hover {
+    transform: scale(1.05);
+    -webkit-box-shadow: 4px 2px 9px 4px rgba(0,0,0,0.8);
+    box-shadow: 4px 2px 9px 4px rgba(0,0,0,0.8);
+}
+
+.active-poster-hidden-content {
+    display: none;
+}
+
+#div-container {
+    width: 70%;
+    margin: auto;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.border-light {
+    border: 2px solid lightgrey;
+    transform: scale(1.02);
+}
+
+#description {
+    width: 70%;
+    margin: auto;
+}
+
+h1, h5, p{
+    text-align: center;
+}
+

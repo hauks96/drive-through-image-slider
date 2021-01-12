@@ -1,0 +1,744 @@
+/* © Copyright 2021 Aegir Mani Hauksson:
+ * FAIR USE NOTICE:
+ * All material contained within this document can be used without direct permission
+ * as long as the author of the original content, Aegir Mani Hauksson is credited in the document.
+
+ * LAST UPDATED:
+
+ * 09.01.2021
+
+ * AUTHOR: Aegir Mani Hauksson
+ * EMAIL: aegir19@ru.is
+
+*/
+/* Properties of the drive through container */
+.poster-drive-through {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    align-items: center;
+}
+
+/* The properties of the div around the left and right poster */
+.poster {
+    display: flex;
+    position: relative;
+    width: 33.33%;
+    justify-content: center;
+}
+
+.active-poster img, .poster img {
+    border-radius: 5px;
+}
+
+/* The image properties of the left and right posters. The transitions determine the transformation
+    animations in the idle state*/
+.poster img {
+    position: relative;
+    width: 75%;
+    filter: grayscale(70%);
+    height: auto;
+    margin: auto;
+    opacity: 0.8;
+    -webkit-transition: transform 0.5s ease-in-out;
+    -moz-transition: transform 0.5s ease-in-out;
+    transition: transform 0.5s ease-in-out;
+    -o-transition: transform 0.5s ease-in-out;
+}
+
+/* The active poster has the same properties as the other posters but we make it separate because of image differences*/
+.active-poster {
+    display: flex;
+    position: relative;
+    width: 33.33%;
+    justify-content: center;
+}
+
+/* The image of the center poster (active poster). Controls the idle transformation time as well as the image size.
+   To change image size, modify 'width' component. */
+.active-poster img {
+    position: relative;
+    height: auto;
+    margin: auto;
+    width: 100%;
+    -webkit-transition: transform 0.5s ease-in-out;
+    -moz-transition: transform 0.5s ease-in-out;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* The hover animation on the active poster while the drive through is idle.
+   This is removed from the div when the drive-through is active to prevent animation resets on hover*/
+.active-poster-hover:hover {
+    -moz-transform: scale(1.01);
+    -webkit-transform: scale(1.01);
+    -o-transform: scale(1.01);
+    -ms-transform: scale(1.01);
+    transform: scale(1.01);
+    cursor: pointer;
+}
+
+/* The hover animation on the left and right poster while the drive through is idle.
+   This is removed from the div when the drive-through is active to prevent animation resets on hover*/
+.left-right-poster-hover:hover {
+    animation-name: fadeOpacity;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    -moz-transform: scale(1.07);
+    -webkit-transform: scale(1.07);
+    -o-transform: scale(1.07);
+    -ms-transform: scale(1.07);
+    transform: scale(1.07);
+    cursor: pointer;
+}
+
+/* The div of the new image coming in from the right. (Content only visible during animation) */
+.new-poster-right {
+    display: flex;
+    position: absolute;
+    width: 33.33%;
+    right: -35%;
+}
+
+/* The div of the new image coming in from the left. (Content only visible during animation) */
+.new-poster-left {
+    display: flex;
+    position: absolute;
+    width: 33.33%;
+    left: -35%;
+}
+
+/* The new image coming in from the right(Only visible during animation) */
+.new-poster-right img, .new-poster-left img {
+    position: relative;
+    width: 75%;
+    filter: grayscale(70%);
+    height: auto;
+    margin: auto;
+    opacity: 0;
+    transform: scale(0);
+}
+
+/* Setting a default animation time and delay property to the poster images to make it referencable */
+.poster-img {
+    animation-delay: 0s;
+    animation-duration: 1s;
+}
+
+/* START: PUSH IN NEW POSTER FROM LEFT SIDE */
+
+/* 1: move active poster to the right */
+.move-active-right {
+    animation: moveActiveRight;
+    animation-duration: 0.7s;
+    animation-iteration-count: 1;
+    animation-fill-mode: backwards;
+}
+@keyframes moveActiveRight {
+  0% {
+    left:0;
+  }
+  100% {
+    left:100%; width: 75%; opacity: 0.7; filter: grayscale(70%);
+  }
+}
+@-moz-keyframes moveActiveRight {
+  0% {
+    left:0;
+  }
+  100% {
+    left:100%; width: 75%; opacity: 0.7; filter: grayscale(70%);
+  }
+}
+@-webkit-keyframes moveActiveRight {
+  0% {
+    left:0;
+  }
+  100% {
+    left:100%; width: 75%; opacity: 0.7; filter: grayscale(70%);
+  }
+}
+@-o-keyframes moveActiveRight {
+  0% {
+    left:0;
+  }
+  100% {
+    left:100%; width: 75%; opacity: 0.7; filter: grayscale(70%);
+  }
+}
+@-ms-keyframes moveActiveRight {
+  0% {
+    left:0;
+  }
+  100% {
+    left:100%; width: 75%; opacity: 0.7; filter: grayscale(70%);
+  }
+}
+/* 1: move active poster to the right */
+
+
+/* 2: move right poster out of screen */
+.move-right-poster-out-of-screen {
+    animation: moveRightOutOfScreen;
+    animation-duration: 0.7s;
+    animation-iteration-count: 1;
+    animation-fill-mode: backwards;
+}
+@keyframes moveRightOutOfScreen {
+  0% {
+    left:0;
+  }
+  100% {
+    left: 75%; opacity: 0; transform: scale(0.5);
+  }
+}
+@-moz-keyframes moveRightOutOfScreen {
+  0% {
+    left:0;
+  }
+  100% {
+    left: 75%; opacity: 0; transform: scale(0.5);
+  }
+}
+@-webkit-keyframes moveRightOutOfScreen {
+  0% {
+    left:0;
+  }
+  100% {
+    left: 75%; opacity: 0; transform: scale(0.5);
+  }
+}
+@-o-keyframes moveRightOutOfScreen {
+  0% {
+    left:0;
+  }
+  100% {
+    left: 75%; opacity: 0; transform: scale(0.5);
+  }
+}
+@-ms-keyframes moveRightOutOfScreen {
+  0% {
+    left:0;
+  }
+  100% {
+    left: 75%; opacity: 0; transform: scale(0.5);
+  }
+}
+/* 2: move right poster out of screen */
+
+
+/* 3: move left poster into active position */
+.move-left-poster-to-active {
+    animation-name: moveLeftPosterToActive;
+    animation-delay: 0.2s;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: backwards;
+}
+@keyframes moveLeftPosterToActive {
+  0% {
+    left:0;
+  }
+  100% {
+    left:100%; width: 100%; opacity: 1; filter: grayscale(0);
+  }
+}
+@-moz-keyframes moveLeftPosterToActive {
+  0% {
+    left:0;
+  }
+  100% {
+    left:100%; width: 100%; opacity: 1; filter: grayscale(0);
+  }
+}
+@-webkit-keyframes moveLeftPosterToActive {
+  0% {
+    left:0;
+  }
+  100% {
+    left:100%; width: 100%; opacity: 1; filter: grayscale(0);
+  }
+}
+@-o-keyframes moveLeftPosterToActive {
+  0% {
+    left:0;
+  }
+  100% {
+    left:100%; width: 100%; opacity: 1; filter: grayscale(0);
+  }
+}
+@-ms-keyframes moveLeftPosterToActive {
+  0% {
+    left:0;
+  }
+  100% {
+    left:100%; width: 100%; opacity: 1; filter: grayscale(0);
+  }
+}
+/* 3: move left poster into active position */
+
+
+/* 4: move in new poster from left */
+.move-new-poster-from-left {
+    animation-name: newPosterFromLeft;
+    animation-delay: 0.3s;
+    animation-duration: 0.4s;
+    animation-iteration-count: 1;
+    animation-fill-mode: backwards;
+}
+@keyframes newPosterFromLeft {
+  0% {
+    left: -35%; opacity: 0;
+  }
+  100% {
+    left: 105%; opacity: 0.8; transform: scale(1);
+  }
+}
+@-moz-keyframes newPosterFromLeft {
+  0% {
+    left: -35%; opacity: 0;
+  }
+  100% {
+    left: 105%; opacity: 0.8; transform: scale(1);
+  }
+}
+@-webkit-keyframes newPosterFromLeft {
+  0% {
+    left: -35%; opacity: 0;
+  }
+  100% {
+    left: 105%; opacity: 0.8; transform: scale(1);
+  }
+}
+@-o-keyframes newPosterFromLeft {
+  0% {
+    left: -35%; opacity: 0;
+  }
+  100% {
+    left: 105%; opacity: 0.8; transform: scale(1);
+  }
+}
+@-ms-keyframes newPosterFromLeft {
+  0% {
+    left: -35%; opacity: 0;
+  }
+  100% {
+    left: 105%; opacity: 0.8; transform: scale(1);
+  }
+}
+/* 4: move in new poster from left */
+
+/* END: PUSH IN NEW POSTER FROM LEFT SIDE*/
+
+
+
+/* START: PUSH IN NEW POSTER FROM RIGHT SIDE */
+
+/* 1: move active poster to the left */
+.move-active-left {
+    animation: moveActiveLeft;
+    animation-duration: 0.7s;
+    animation-iteration-count: 1;
+    animation-fill-mode: backwards;
+}
+@keyframes moveActiveLeft {
+  0% {
+    right:0;
+  }
+  100% {
+    right:100%; width: 75%; padding-bottom: 0; opacity: 0.7; filter:grayscale(70%);
+  }
+}
+@-moz-keyframes moveActiveLeft {
+  0% {
+    right:0;
+  }
+  100% {
+    right:100%; width: 75%; padding-bottom: 0; opacity: 0.7; filter:grayscale(70%);
+  }
+}
+@-webkit-keyframes moveActiveLeft {
+  0% {
+    right:0;
+  }
+  100% {
+    right:100%; width: 75%; padding-bottom: 0; opacity: 0.7; filter:grayscale(70%);
+  }
+}
+@-o-keyframes moveActiveLeft {
+  0% {
+    right:0;
+  }
+  100% {
+    right:100%; width: 75%; padding-bottom: 0; opacity: 0.7; filter:grayscale(70%);
+  }
+}
+@-ms-keyframes moveActiveLeft {
+  0% {
+    right:0;
+  }
+  100% {
+    right:100%; width: 75%; padding-bottom: 0; opacity: 0.7; filter:grayscale(70%);
+  }
+}
+/* 1: move active poster to the left */
+
+
+/* 2: move left poster out of screen */
+.move-left-poster-out-of-screen {
+    animation: moveLeftOutOfScreen;
+    animation-duration: 0.7s;
+    animation-iteration-count: 1;
+    animation-fill-mode: backwards;
+}
+@keyframes moveLeftOutOfScreen {
+  0% {
+    right:0;
+  }
+  100% {
+    right: 75%; opacity: 0; transform: scale(0.5);
+  }
+}
+@-moz-keyframes moveLeftOutOfScreen {
+  0% {
+    right:0; width: 100%;
+  }
+  100% {
+    right: 75%; opacity: 0; transform: scale(0.5);
+  }
+}
+@-webkit-keyframes moveLeftOutOfScreen {
+  0% {
+    right:0; width: 100%;
+  }
+  100% {
+    right: 75%; opacity: 0; transform: scale(0.5);
+  }
+}
+@-o-keyframes moveLeftOutOfScreen {
+  0% {
+    right:0; width: 100%;
+  }
+  100% {
+    right: 75%; opacity: 0; transform: scale(0.5);
+  }
+}
+@-ms-keyframes moveLeftOutOfScreen {
+  0% {
+    right:0; width: 100%;
+  }
+  100% {
+    right: 75%; opacity: 0; transform: scale(0.5);
+  }
+}
+/* 2: move left poster out of screen */
+
+
+/* 3: move right poster into active position */
+.move-right-poster-to-active {
+    animation-name: moveRightPosterToActive;
+    animation-delay: 0.2s;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: backwards;
+}
+@keyframes moveRightPosterToActive {
+  0% {
+    right:0;
+  }
+  100% {
+    right:100%; width: 100%; opacity: 1; filter: grayscale(0);
+  }
+}
+@-moz-keyframes moveRightPosterToActive {
+  0% {
+    right:0;
+  }
+  100% {
+    right:100%; width: 100%; opacity: 1; filter: grayscale(0);
+  }
+}
+@-webkit-keyframes moveRightPosterToActive {
+  0% {
+    right:0;
+  }
+  100% {
+    right:100%; width: 100%; opacity: 1; filter: grayscale(0);
+  }
+}
+@-o-keyframes moveRightPosterToActive {
+  0% {
+    right:0;
+  }
+  100% {
+    right:100%; width: 100%; opacity: 1; filter: grayscale(0);
+  }
+}
+@-ms-keyframes moveRightPosterToActive {
+  0% {
+    right:0;
+  }
+  100% {
+    right:100%; width: 100%; opacity: 1; filter: grayscale(0);
+  }
+}
+/* 3: move right poster into active position */
+
+
+/* 4: move in new poster from right */
+.move-new-poster-from-right {
+    animation-name: newPosterFromRight;
+    animation-delay: 0.3s;
+    animation-duration: 0.4s;
+    animation-iteration-count: 1;
+    animation-fill-mode: backwards;
+}
+@keyframes newPosterFromRight {
+  0% {
+    right: -35%; opacity: 0;
+  }
+  100% {
+    right: 105%; opacity: 0.8; transform: scale(1);
+  }
+}
+@-moz-keyframes newPosterFromRight {
+  0% {
+    right: -35%; opacity: 0;
+  }
+  100% {
+    right: 105%; opacity: 0.8; transform: scale(1);
+  }
+}
+@-webkit-keyframes newPosterFromRight {
+  0% {
+    right: -35%; opacity: 0;
+  }
+  100% {
+    right: 105%; opacity: 0.8; transform: scale(1);
+  }
+}
+@-o-keyframes newPosterFromRight {
+  0% {
+    right: -35%; opacity: 0;
+  }
+  100% {
+    right: 105%; opacity: 0.8; transform: scale(1);
+  }
+}
+@-ms-keyframes newPosterFromRight {
+  0% {
+    right: -35%; opacity: 0;
+  }
+  100% {
+    right: 105%; opacity: 0.8; transform: scale(1);
+  }
+}
+/* 4: move in new poster from right */
+
+/* END: PUSH IN NEW POSTER FROM RIGHT SIDE */
+
+
+
+/* START: WINDOW LOAD ANIMATIONS */
+
+/* 1: left poster load animation */
+.left-poster-load-animation {
+    animation-name: leftPosterLoadAnimation;
+    animation-delay: 0.3s;
+    animation-duration: 0.4s;
+    animation-iteration-count: 1;
+    animation-fill-mode: backwards;
+}
+@keyframes leftPosterLoadAnimation {
+  0% {
+    left: -35%; opacity: 0;
+  }
+  100% {
+    left: 0; opacity: 0.8; transform: scale(1);
+  }
+}
+@-moz-keyframes leftPosterLoadAnimation {
+  0% {
+    left: -35%; opacity: 0;
+  }
+  100% {
+    left: 0; opacity: 0.8; transform: scale(1);
+  }
+}
+@-webkit-keyframes leftPosterLoadAnimation {
+  0% {
+    left: -35%; opacity: 0;
+  }
+  100% {
+    left: 0; opacity: 0.8; transform: scale(1);
+  }
+}
+@-o-keyframes leftPosterLoadAnimation {
+  0% {
+    left: -35%; opacity: 0;
+  }
+  100% {
+    left: 0; opacity: 0.8; transform: scale(1);
+  }
+}
+@-ms-keyframes leftPosterLoadAnimation {
+  0% {
+    left: -35%; opacity: 0;
+  }
+  100% {
+    left: 0; opacity: 0.8; transform: scale(1);
+  }
+}
+/* 1: left poster load animation */
+
+
+/* 2: left poster load animation */
+.active-poster-load-animation {
+    animation-name: activePosterLoadAnimation;
+    animation-delay: 0.3s;
+    animation-duration: 0.4s;
+    animation-iteration-count: 1;
+    animation-fill-mode: backwards;
+}
+@keyframes activePosterLoadAnimation {
+  0% {
+    left:-135%; opacity: 0;
+  }
+  100% {
+    left: 0; opacity: 0.8; transform: scale(1);
+  }
+}
+@-moz-keyframes activePosterLoadAnimation {
+  0% {
+    left:-135%; opacity: 0;
+  }
+  100% {
+    left: 0; opacity: 0.8; transform: scale(1);
+  }
+}
+@-webkit-keyframes activePosterLoadAnimation {
+  0% {
+    left:-135%; opacity: 0;
+  }
+  100% {
+    left: 0; opacity: 0.8; transform: scale(1);
+  }
+}
+@-o-keyframes activePosterLoadAnimation {
+  0% {
+    left:-135%; opacity: 0;
+  }
+  100% {
+    left: 0; opacity: 0.8; transform: scale(1);
+  }
+}
+@-ms-keyframes activePosterLoadAnimation {
+  0% {
+    left:-135%; opacity: 0;
+  }
+  100% {
+    left: 0; opacity: 0.8; transform: scale(1);
+  }
+}
+/* 2: left poster load animation */
+
+
+/* 3: left poster load animation */
+.right-poster-load-animation {
+    animation-name: rightPosterLoadAnimation;
+    animation-delay: 0.3s;
+    animation-duration: 0.4s;
+    animation-iteration-count: 1;
+    animation-fill-mode: backwards;
+}
+@keyframes rightPosterLoadAnimation {
+  0% {
+    left:-235%; opacity: 0;
+  }
+  100% {
+    left: 0; opacity: 0.8; transform: scale(1);
+  }
+}
+@-moz-keyframes rightPosterLoadAnimation {
+  0% {
+    left:-235%; opacity: 0;
+  }
+  100% {
+    left: 0; opacity: 0.8; transform: scale(1);
+  }
+}
+@-webkit-keyframes rightPosterLoadAnimation {
+  0% {
+    left:-235%; opacity: 0;
+  }
+  100% {
+    left: 0; opacity: 0.8; transform: scale(1);
+  }
+}
+@-o-keyframes rightPosterLoadAnimation {
+  0% {
+    left:-235%; opacity: 0;
+  }
+  100% {
+    left: 0; opacity: 0.8; transform: scale(1);
+  }
+}
+@-ms-keyframes rightPosterLoadAnimation {
+  0% {
+    left:-235%; opacity: 0;
+  }
+  100% {
+    left: 0; opacity: 0.8; transform: scale(1);
+  }
+}
+/* 3: left poster load animation */
+
+/* END: WINDOW LOAD ANIMATIONS */
+
+.fade-out-current-img {
+    animation-name: fadeOutCurrentImage;
+    animation-duration: 0.3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: backwards;
+}
+@keyframes fadeOutCurrentImage {
+  0% {
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-moz-keyframes fadeOutCurrentImage {
+  0% {
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes fadeOutCurrentImage {
+  0% {
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-o-keyframes fadeOutCurrentImage {
+  0% {
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-ms-keyframes fadeOutCurrentImage {
+  0% {
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.animation-duration {
+    animation-duration: 0s;
+    animation-delay: 0s;
+}
