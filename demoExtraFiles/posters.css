@@ -47,3 +47,8 @@ h1, h5, p{
     text-align: center;
 }
 
+body {
+    background: #1f2227;
+    color: lightgrey;
+    font-family: 'Nunito', sans-serif;
+}
