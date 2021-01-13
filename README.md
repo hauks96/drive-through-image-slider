@@ -19,7 +19,8 @@ https://jsfiddle.net/agirmani/qh9j4kt7/18/
 `<script src="https://cdn.jsdelivr.net/gh/hauks96/drive-through-image-slider/posterDriveThrough/drive_through.js"></script>`
 
 ### Dependencies
-1. JQuery slim-min or greater
+1. JQuery slim-min or greater\
+Make sure it is loaded before the image slider script cdn. See the JsFiddle example for reference.
 
 
 ### Setup
