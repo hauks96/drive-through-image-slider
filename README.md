@@ -123,10 +123,18 @@ For more in depth details look at the source code documentation.
 | method | `shiftLeft` | none | none | Perform a left shift on the drive through. All images are shifted one to the left. This means that a new image will enter from the right side |
 | method | `shiftRight` | none | none | Perform a right shift on the drive through. All images are shifted one to the right. This means that a new image will enter from the left side. |
 | method | `shiftToIndex` | `direction:str` `index:int` | none | Shift the drive through to a specific index (according to center poster). The direction says in which direction to animate the change. |
+| method | `setFixedMaxHeight` | none | none | Sets drive through height according to the tallest image available. |
 | method | `setAnimationTime` | `seconds:float` | none | Change the time it takes to animate a shift in either direction. All delays are automatically adjusted to scale correctly. |
 | method | `resetAnimationTime` | none | none |  reset the animation time to default. The times from the variable defaultAnimationTimings will be used. |
-| method | `setFixedMaxHeight` | none | none | Sets drive through height according to the tallest image available. |
 | method | `getImages` | none | `[str, str, str]` | Get images from data target according to the data-index attribute of the left, center and right poster returned as a list in that order. |
 | method | `updateImages` | none | none | Updates the images in the drive through according to the current data-indexes of the posters. |
+| method | `loadImagesByIndex` | `index:int or str:'random'` | none |  Load images from a given index into the drive through. |
 | method | `setNewCenterIndex` | none | none | Set the data-index values of all posters according to a new index of the center poster. Can take either an int or 'random'. Does not update images. |
 | method | `shiftPosterIndexes` | none | none | Shift the indexes in the drive through in either direction by one. If an end is met on either side, it will continue on the other side. Does not update images. |
+| getter | `leftPoster`/ `rightPoster`/ `centerPoster` | none | `dom element` | Returns the poster dom element. |
+| getter/setter | `leftIndex`/ `rightIndex`/ `centerIndex` | `int` | `int` | The index of the posters. |
+| getter/setter | `leftIndex`/ `rightIndex`/ `centerIndex` | `int` | `int` | The index of the posters. |
+| getter | `leftPosterImageElement`/ `rightPosterImageElement`/ `centerPosterImageElement` | none | `dom element` | Returns the poster's image element (`<img ...>`). |
+| getter/setter | `leftPosterImageSrc`/ `rightPosterImageSrc`/ `centerPosterImageSrc` | `ulr:str` | `url:str` | The poster's image source. |
+| getter/setter | `height` | `px: int` | `px: int` | The height of the drive through |
+| getter | `maxActiveHeight` | none | `px: int` | The height of the drive through |
