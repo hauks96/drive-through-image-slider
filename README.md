@@ -5,4 +5,5 @@ Simple animated image slideshow plugin for HTML.
 ![image](gifs/shiftleftright.gif)
 2. Allows easy customization with animation speeds \
 ![image](gifs/fastshift.gif)
-
+3. Easy to set up \
+![image](gifs/drivethrough.PNG)
