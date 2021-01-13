@@ -32,7 +32,7 @@ The minimal required to make the drive through work is the following.
         <img src="" alt="new left poster">
     </div>
 
-    <div class="poster left-poster" shift-on-click="true">
+    <div class="poster left-poster">
         <img src="" alt="left poster">
     </div>
 
@@ -40,7 +40,7 @@ The minimal required to make the drive through work is the following.
         <img src="" alt="center poster">
     </div>
 
-    <div class="poster right-poster" shift-on-click="true">
+    <div class="poster right-poster">
          <img src="" alt="right poster">
     </div>
 
