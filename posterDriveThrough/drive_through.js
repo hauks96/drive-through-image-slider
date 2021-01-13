@@ -286,7 +286,7 @@ class ImageDriveThrough {
      * according to a new index of the center poster. Can take either an int or 'random'.
      * @param {integer | string} index 
      */
-    setPosterIndexesAccordingToNewCenterIndex(index){
+    setNewCenterIndex(index){
         /* Set the data-index values of the left, right and center poster
            according to a new index of the center poster */
         let choices = this.choices;
@@ -374,7 +374,7 @@ class ImageDriveThrough {
      * @param {int} index Data index of the center poster
      */
     loadImagesByIndex(index){
-        this.setPosterIndexesAccordingToNewCenterIndex(index);
+        this.setNewCenterIndex(index);
         this.updateImages();
     }
 
@@ -647,39 +647,39 @@ class ImageDriveThrough {
         /* Animate the left poster moving to the left */
         let cls = this.animationClassLeftToLeft;
         let hover = this.leftRightPosterHoverClass;
-        this.animatePoster(this.leftPosterImageElement, new_left_image, cls, hover, 'left');
+        this.#animatePoster(this.leftPosterImageElement, new_left_image, cls, hover, 'left');
     }
     #animateLeftPosterRight(new_left_image){
         /* Animate left poster moving to the right */
         let cls = this.animationClassLeftToRight;
         let hover = this.leftRightPosterHoverClass;
-        this.animatePoster(this.leftPosterImageElement, new_left_image, cls, hover, 'right');
+        this.#animatePoster(this.leftPosterImageElement, new_left_image, cls, hover, 'right');
     }
     #animateRightPosterLeft(new_right_image){
         /* Animate right poster moving left */
         let cls = this.animationClassRightToLeft
         let hover = this.leftRightPosterHoverClass;
-        this.animatePoster(this.rightPosterImageElement, new_right_image, cls, hover, 'left');
+        this.#animatePoster(this.rightPosterImageElement, new_right_image, cls, hover, 'left');
     }
     #animateRightPosterRight(new_right_image){
         /* Animate right poster moving right */
         let cls = this.animationClassRightToRight;
         let hover = this.leftRightPosterHoverClass;
-        this.animatePoster(this.rightPosterImageElement, new_right_image, cls, hover, 'right');
+        this.#animatePoster(this.rightPosterImageElement, new_right_image, cls, hover, 'right');
     }
     #animateCenterPosterLeft(new_center_image){
         /* Animate the center poster moving left */
         let cls = this.animationClassCenterToLeft;
         let hover = this.centerPosterHoverClass;
-        this.animatePoster(this.centerPosterImageElement, new_center_image, cls, hover, 'left');
+        this.#animatePoster(this.centerPosterImageElement, new_center_image, cls, hover, 'left');
     }
     #animateCenterPosterRight(new_center_image){
         /* Animate the center poster moving right */
         let cls = this.animationClassCenterToRight;
         let hover = this.centerPosterHoverClass;
-        this.animatePoster(this.centerPosterImageElement, new_center_image, cls, hover, 'right');
+        this.#animatePoster(this.centerPosterImageElement, new_center_image, cls, hover, 'right');
     }
-    animatePoster(poster_image_ele, new_image, cls, hover_cls, direction){
+    #animatePoster(poster_image_ele, new_image, cls, hover_cls, direction){
         /* Animate the given poster */
         void poster_image_ele.offsetWidth;
         poster_image_ele.classList.remove(hover_cls);
@@ -1010,7 +1010,7 @@ class ImageDriveThrough {
 
         if (direction.toLowerCase()==='right'){
             // Set index to one more than center in order to slide target it into center position
-            this.setPosterIndexesAccordingToNewCenterIndex(index);
+            this.setNewCenterIndex(index);
             this.shiftPosterIndexes('left');
             let images = this.getImages();
             this.setNewImages(images);
@@ -1018,7 +1018,7 @@ class ImageDriveThrough {
 
         } else if (direction.toLowerCase()==='left'){
             // Set index to one less than center in order to slide target it into center position
-            this.setPosterIndexesAccordingToNewCenterIndex(index);
+            this.setNewCenterIndex(index);
             this.shiftPosterIndexes('right');
             let images = this.getImages();
             this.setNewImages(images);
