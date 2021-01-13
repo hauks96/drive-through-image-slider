@@ -95,7 +95,7 @@ _If any of these custom attributes are missing from the slider, you will be noti
 Once you have initialized the html file according to the standards above you can now customize your slider even further in javascript.
 
 #### Calling the slider class
-The slider has an api which available through your poster-drive-through elements. Let's assume you have the following slider set up.
+The slider has an api which is available through your poster-drive-through elements. This connection is created by an onload method in the dom where the elements are bound to an instance of the image slider class. Let's assume you have the following slider set up.
 
 ```
 <div id="sliderExample" class="poster-drive-through" data-target="some-class" animate-on-load="true" fixed-max-height="true" start-index="random">
@@ -105,6 +105,7 @@ The slider has an api which available through your poster-drive-through elements
 You can now use all methods and retrieve all variables available within the api by calling through `slider.DriveThrough.method_or_var`:
 ```
 <script>
+    // Examples
     let slider = document.getElementById('sliderExample');
     slider.DriveThrough.shiftLeft(); // Shifts slider left
     slider.DriveThrough.shiftRight(); // Shifts slider right (does not wait until last slide is finished)
