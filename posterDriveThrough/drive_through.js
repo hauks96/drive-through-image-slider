@@ -875,24 +875,29 @@ class ImageDriveThrough {
         let right_poster = this.rightPoster;
         let left_setting = left_poster.getAttribute('shift-on-click');
         let right_setting = right_poster.getAttribute('shift-on-click');
-        if (left_setting.toLowerCase() ==='true'){
+
+        if (left_setting === "" ||left_setting ===null || left_setting === undefined){
+            console.log("shift-on-click attribute missing on left poster. Setting as true.")
+            left_poster.setAttribute('shift-on-click', 'true');  
+        }
+        else if (left_setting.toLowerCase() ==='true'){
             $(left_poster).on('click', function (){
                 this.shiftRight();
             }.bind(this));
-        }
-        if (left_setting === "" ||left_setting ===null || left_setting === undefined){
-            console.log("shift-on-click attribute missing form left poster. Setting as true.")
-            left_poster.setAttribute('shift-on-click', 'true');
+        } else {
+            console.log("shift-on-click attribute on left poster had an invalid value. Only true and false permitted.")
         }
 
-        if (right_setting.toLowerCase() ==='true'){
+        if (right_setting === "" ||right_setting ===null || right_setting === undefined){
+            console.log("shift-on-click attribute missing on right poster. Setting as true.")
+            left_poster.setAttribute('shift-on-click', 'true');
+        }
+        else if (right_setting.toLowerCase() ==='true'){
             $(right_poster).on('click', function (){
                 this.shiftLeft();
             }.bind(this));
-        }
-        if (right_setting === "" ||right_setting ===null || right_setting === undefined){
-            console.log("shift-on-click attribute missing form left poster. Setting as true.")
-            left_poster.setAttribute('shift-on-click', 'true');
+        } else {
+            console.log("shift-on-click attribute on right poster had an invalid value. Only true and false permitted.")
         }
     }
 
