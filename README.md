@@ -73,7 +73,7 @@ b) **start-index** \
   `<div class="poster-drive-through" data-target="some-class" start-index="random">...`
   
 c) **fixed-max-height** \
-  This setting is to make sure the drive through doesn't have different heights when it scrolls through your images. This happens if your images aren't all the same height. To     tackle this you can fix the height of the slider to be the maximum height it would achieve with the largest image in the active center position.
+  This setting is to make sure the drive through doesn't have different heights when it scrolls through your images. This happens if your images aren't all the same height. To     tackle this you can fix the height of the slider to be the maximum height it would achieve with the largest image in the active center position.\
   `<div class="poster-drive-through" data-target="some-class" fixed-max-height="true">...`
   
 d) **shift-on-click**\
