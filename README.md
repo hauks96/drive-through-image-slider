@@ -88,5 +88,29 @@ d) **shift-on-click**\
          <img src="" alt="right poster">
     </div>
 ```
-If any of these custom attributes are missing from the slider, you will be notified in the console, so make sure to check the console on your first setup.
-  
+
+_If any of these custom attributes are missing from the slider, you will be notified in the console, so make sure to check the console on your first setup._
+
+### General usage
+Once you have initialized the html file according to the standards above you can now customize your slider even further in javascript.
+
+#### Calling the slider class
+The slider has an api which available through your poster-drive-through elements. Let's assume you have the following slider set up.
+
+```
+<div id="sliderExample" class="poster-drive-through" data-target="some-class" animate-on-load="true" fixed-max-height="true" start-index="random">
+    ... 
+</div>
+```
+You can now use all methods and retrieve all variables available within the api by calling through `slider.DriveThrough.method_or_var`:
+```
+<script>
+    let slider = document.getElementById('sliderExample');
+    slider.DriveThrough.shiftLeft(); // Shifts slider left
+    slider.DriveThrough.shiftRight(); // Shifts slider right (does not wait until last slide is finished)
+    slider.DriveThrough.shiftToIndex('left', 15); // Shift slider to a given index via a given direction
+    slider.DriveThrough.setAnimationTime = 0.4s; // Change the animation time for a shift
+    slider.DriveThrough.resetAnimationTime(); // Reset animation time to default
+    ...
+</script>
+```
