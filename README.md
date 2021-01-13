@@ -131,10 +131,14 @@ For more in depth details look at the source code documentation.
 | method | `loadImagesByIndex` | `index:int or str:'random'` | none |  Load images from a given index into the drive through. |
 | method | `setNewCenterIndex` | none | none | Set the data-index values of all posters according to a new index of the center poster. Can take either an int or 'random'. Does not update images. |
 | method | `shiftPosterIndexes` | none | none | Shift the indexes in the drive through in either direction by one. If an end is met on either side, it will continue on the other side. Does not update images. |
+| getter | `choices` | none | `[dom elements]` | Returns the dom elements associated with the drive through data-target. Utilizes the getElementsByClassName method. |
 | getter | `leftPoster`/ `rightPoster`/ `centerPoster` | none | `dom element` | Returns the poster dom element. |
 | getter/setter | `leftIndex`/ `rightIndex`/ `centerIndex` | `int` | `int` | The index of the posters. |
 | getter/setter | `leftIndex`/ `rightIndex`/ `centerIndex` | `int` | `int` | The index of the posters. |
 | getter | `leftPosterImageElement`/ `rightPosterImageElement`/ `centerPosterImageElement` | none | `dom element` | Returns the poster's image element (`<img ...>`). |
 | getter/setter | `leftPosterImageSrc`/ `rightPosterImageSrc`/ `centerPosterImageSrc` | `ulr:str` | `url:str` | The poster's image source. |
-| getter/setter | `height` | `px: int` | `px: int` | The height of the drive through |
-| getter | `maxActiveHeight` | none | `px: int` | The height of the drive through |
+| getter/setter | `height` | `px: int` | `px: int` | The height of the drive through. |
+| getter | `maxActiveHeight` | none | `px: int` | The maximum height the drive through can achieve with the available images. |
+| getter/setter | `startIndex` | `index: int` | `index: int` | The start index of the drive through. Valid options are integers or 'random' |
+| var | `defaultAnimationTimings` | none | none | An object containing all timings. See source code for details. |
+| var | Animation Classes | none | none | See the variables in source code if you want to apply your own animation classes to the drive through |
