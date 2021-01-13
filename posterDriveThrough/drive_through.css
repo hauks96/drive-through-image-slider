@@ -742,3 +742,40 @@
     animation-duration: 0s;
     animation-delay: 0s;
 }
+
+/* On Hover opacity change animation */
+@keyframes fadeOpacity {
+  0% {
+  }
+  100% {
+    opacity: 1; filter:grayscale(0);
+  }
+}
+@-moz-keyframes fadeOpacity {
+  0% {
+  }
+  100% {
+    opacity: 1; filter:grayscale(0);
+  }
+}
+@-webkit-keyframes fadeOpacity {
+  0% {
+  }
+  100% {
+    opacity: 1; filter:grayscale(0);
+  }
+}
+@-o-keyframes fadeOpacity {
+  0% {
+  }
+  100% {
+    opacity: 1; filter:grayscale(0);
+  }
+}
+@-ms-keyframes fadeOpacity {
+  0% {
+  }
+  100% {
+    opacity: 1; filter:grayscale(0);
+  }
+}

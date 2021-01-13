@@ -2,7 +2,6 @@ $('.poster-block').on('click', function () {
     /* Set a new drive through image when user clicks on poster and add styling to the clicked image */
     let drive_through = document.getElementById('exampleDriveThrough');
     let curr_choice = $(this)[0];
-
     // The images available to the drive though
     let choices = drive_through.DriveThrough.choices;
     let target_idx = 0;
