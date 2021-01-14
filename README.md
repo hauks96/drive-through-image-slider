@@ -10,7 +10,8 @@ Simple animated image slideshow plugin for HTML.
 
 
 ### JSFiddle demo
-https://jsfiddle.net/agirmani/qh9j4kt7/18/
+https://jsfiddle.net/agirmani/qh9j4kt7/18/ \
+Note that the fiddle demo does not automatically resize the slider's max height unless you resize your own browser.
 
 ### CDN'S
 1. Stylesheet\
@@ -20,7 +21,7 @@ https://jsfiddle.net/agirmani/qh9j4kt7/18/
 
 ### Dependencies
 1. [JQuery slim-min](https://code.jquery.com/) or greater\
-Make sure it is loaded before the image slider script cdn. See the JsFiddle example for reference.
+Make sure it is loaded before the image slider script cdn. See the [JsFiddle example](https://jsfiddle.net/agirmani/qh9j4kt7/18/) for reference.
 
 
 ### Setup
