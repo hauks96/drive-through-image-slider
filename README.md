@@ -24,42 +24,41 @@ Make sure it is loaded before the image slider script cdn. See the JsFiddle exam
 
 
 ### Setup
-#### 1. The bare minimum
-The minimal required to make the drive through work is the following.
+#### 1. The html
+Copy paste this html to set up a slider. Don't forget to include the cdn's listed above.
 ```
-<div class="poster-drive-through" data-target="some-class">
+<div class="poster-drive-through" data-target="some-class" start-index="random" fixed-max-height="true" animate-on-load="true">
     <div class="poster new-poster-left">
         <img src="" alt="new left poster">
     </div>
 
     <div class="poster left-poster">
-        <img src="" alt="left poster">
+        <img src="" alt="left poster" shift-on-click="true">
     </div>
 
     <div class="active-poster">
         <img src="" alt="center poster">
     </div>
 
-    <div class="poster right-poster">
+    <div class="poster right-poster" shift-on-click="true">
          <img src="" alt="right poster">
     </div>
-
 
     <div class="poster new-poster-right">
         <img src="" alt="new right poster">
     </div>
 </div>
 ```
-In addition to this you **must** have elements with class `some-class` related to the drive throughs `data-target` that contain your images. **One** of the direct descendants of these elements must be an `<img>` tag for the slider to fetch images on demand.\
+In addition to this you **must** have elements in your dom with class `some-class` related to the drive throughs `data-target` attribute that contain your images. **One** of the direct descendants of these elements must be an `<img>` tag for the slider to fetch images on demand.\
 Example:
 ```
 <div class="some-class">
-    <div id="Some random div">...</div>
+    <div id="Some random stuff">...</div>
     <img src="..." alt="1">
 </div>
 <div class="come-class">
     <img src="..." alt="2">
-    <div id="Some random div">...</div>
+    <div id="Some random stuff">...</div>
 </div>
 ...
 ```
