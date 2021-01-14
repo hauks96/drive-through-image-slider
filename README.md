@@ -125,7 +125,7 @@ For more in depth details look at the source code documentation.
 | method | `shiftRight` | none | none | Perform a right shift on the drive through. All images are shifted one to the right. This means that a new image will enter from the left side. |
 | method | `shiftToIndex` | `direction:str` `index:int` | none | Shift the drive through to a specific index (according to center poster). The direction says in which direction to animate the change. |
 | method | `setFixedMaxHeight` | none | none | Sets drive through height according to the tallest image available. |
-| method | `setAnimationTime` | `seconds:float` | none | Change the time it takes to animate a shift in either direction. All delays are automatically adjusted to scale correctly. |
+| method | `setAnimationTime` | `seconds:float` | none | Change the time it takes to animate a shift in either direction. All delays are automatically adjusted to scale correctly. I.e animationTime = duration+delay |
 | method | `resetAnimationTime` | none | none |  reset the animation time to default. The times from the variable defaultAnimationTimings will be used. |
 | method | `getImages` | none | `[str, str, str]` | Get images from data target according to the data-index attribute of the left, center and right poster returned as a list in that order. |
 | method | `updateImages` | none | none | Updates the images in the drive through according to the current data-indexes of the posters. |
