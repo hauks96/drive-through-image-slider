@@ -110,7 +110,7 @@ You can now use all methods and retrieve all variables available within the api 
     slider.DriveThrough.shiftLeft(); // Shifts slider left
     slider.DriveThrough.shiftRight(); // Shifts slider right (does not wait until last slide is finished)
     slider.DriveThrough.shiftToIndex('left', 15); // Shift slider to a given index via a given direction
-    slider.DriveThrough.setAnimationTime = 0.4s; // Change the animation time for a shift
+    slider.DriveThrough.setAnimationTime(0.4); // Change the animation time for a shift
     slider.DriveThrough.resetAnimationTime(); // Reset animation time to default
     ...
 </script>
