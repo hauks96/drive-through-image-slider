@@ -10,7 +10,8 @@ Simple animated image slideshow plugin for HTML.
 
 
 ### JSFiddle demo
-https://jsfiddle.net/agirmani/qh9j4kt7/18/
+https://jsfiddle.net/agirmani/qh9j4kt7/18/ \
+Note that the fiddle demo does not automatically resize the slider's max height unless you resize your own browser.
 
 ### CDN'S
 1. Stylesheet\
@@ -19,47 +20,46 @@ https://jsfiddle.net/agirmani/qh9j4kt7/18/
 `<script src="https://cdn.jsdelivr.net/gh/hauks96/drive-through-image-slider/posterDriveThrough/drive_through.js"></script>`
 
 ### Dependencies
-1. JQuery slim-min or greater\
-Make sure it is loaded before the image slider script cdn. See the JsFiddle example for reference.
+1. [JQuery slim-min](https://code.jquery.com/) or greater\
+Make sure it is loaded before the image slider script cdn. See the [JsFiddle example](https://jsfiddle.net/agirmani/qh9j4kt7/18/) for reference.
 
 
 ### Setup
-#### 1. The bare minimum
-The minimal required to make the drive through work is the following.
+#### 1. The html
+Copy paste this html to set up a slider. Don't forget to include the cdn's listed above.
 ```
-<div class="poster-drive-through" data-target="some-class">
+<div class="poster-drive-through" data-target="some-class" start-index="random" fixed-max-height="true" animate-on-load="true">
     <div class="poster new-poster-left">
         <img src="" alt="new left poster">
     </div>
 
     <div class="poster left-poster">
-        <img src="" alt="left poster">
+        <img src="" alt="left poster" shift-on-click="true">
     </div>
 
     <div class="active-poster">
         <img src="" alt="center poster">
     </div>
 
-    <div class="poster right-poster">
+    <div class="poster right-poster" shift-on-click="true">
          <img src="" alt="right poster">
     </div>
-
 
     <div class="poster new-poster-right">
         <img src="" alt="new right poster">
     </div>
 </div>
 ```
-In addition to this you **must** have elements with class `some-class` related to the drive throughs `data-target` that contain your images. **One** of the direct descendants of these elements must be an `<img>` tag for the slider to fetch images on demand.\
+In addition to this you **must** have elements in your dom with class `some-class` related to the drive throughs `data-target` attribute that contain your images. **One** of the direct descendants of these elements must be an `<img>` tag for the slider to fetch images on demand.\
 Example:
 ```
 <div class="some-class">
-    <div id="Some random div">...</div>
+    <div id="Some random stuff">...</div>
     <img src="..." alt="1">
 </div>
 <div class="come-class">
     <img src="..." alt="2">
-    <div id="Some random div">...</div>
+    <div id="Some random stuff">...</div>
 </div>
 ...
 ```
@@ -73,7 +73,7 @@ b) **start-index** \
   `<div class="poster-drive-through" data-target="some-class" start-index="random">...`
   
 c) **fixed-max-height** \
-  This setting is to make sure the drive through doesn't have different heights when it scrolls through your images. This happens if your images aren't all the same height. To     tackle this you can fix the height of the slider to be the maximum height it would achieve with the largest image in the active center position.
+  This setting is to make sure the drive through doesn't have different heights when it scrolls through your images. This happens if your images aren't all the same height. To     tackle this you can fix the height of the slider to be the maximum height it would achieve with the largest image in the active center position.\
   `<div class="poster-drive-through" data-target="some-class" fixed-max-height="true">...`
   
 d) **shift-on-click**\
@@ -95,7 +95,7 @@ _If any of these custom attributes are missing from the slider, you will be noti
 Once you have initialized the html file according to the standards above you can now customize your slider even further in javascript.
 
 #### Calling the slider class
-The slider has an api which available through your poster-drive-through elements. Let's assume you have the following slider set up.
+The slider has an api which is available through your poster-drive-through elements. This connection is created by an onload method in the dom where the elements are bound to an instance of the image slider class. Let's assume you have the following slider set up.
 
 ```
 <div id="sliderExample" class="poster-drive-through" data-target="some-class" animate-on-load="true" fixed-max-height="true" start-index="random">
@@ -105,11 +105,12 @@ The slider has an api which available through your poster-drive-through elements
 You can now use all methods and retrieve all variables available within the api by calling through `slider.DriveThrough.method_or_var`:
 ```
 <script>
+    // Examples
     let slider = document.getElementById('sliderExample');
     slider.DriveThrough.shiftLeft(); // Shifts slider left
     slider.DriveThrough.shiftRight(); // Shifts slider right (does not wait until last slide is finished)
     slider.DriveThrough.shiftToIndex('left', 15); // Shift slider to a given index via a given direction
-    slider.DriveThrough.setAnimationTime = 0.4s; // Change the animation time for a shift
+    slider.DriveThrough.setAnimationTime(0.4); // Change the animation time for a shift
     slider.DriveThrough.resetAnimationTime(); // Reset animation time to default
     ...
 </script>
@@ -124,7 +125,7 @@ For more in depth details look at the source code documentation.
 | method | `shiftRight` | none | none | Perform a right shift on the drive through. All images are shifted one to the right. This means that a new image will enter from the left side. |
 | method | `shiftToIndex` | `direction:str` `index:int` | none | Shift the drive through to a specific index (according to center poster). The direction says in which direction to animate the change. |
 | method | `setFixedMaxHeight` | none | none | Sets drive through height according to the tallest image available. |
-| method | `setAnimationTime` | `seconds:float` | none | Change the time it takes to animate a shift in either direction. All delays are automatically adjusted to scale correctly. |
+| method | `setAnimationTime` | `seconds:float` | none | Change the time it takes to animate a shift in either direction. All delays are automatically adjusted to scale correctly. I.e animationTime = duration+delay |
 | method | `resetAnimationTime` | none | none |  reset the animation time to default. The times from the variable defaultAnimationTimings will be used. |
 | method | `getImages` | none | `[str, str, str]` | Get images from data target according to the data-index attribute of the left, center and right poster returned as a list in that order. |
 | method | `updateImages` | none | none | Updates the images in the drive through according to the current data-indexes of the posters. |
