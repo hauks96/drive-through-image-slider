@@ -114,9 +114,9 @@ class ImageDriveThrough {
             'hiddenRightPoster': {'left': {'animation-delay' : 0.2, 'animation-time' : 0.5}}
         }
 
-        this.#onLoadSetMaxHeight();
-        this.#onLoadSetPosterNames();
-        this.#onLoadSetOnClickSettings();
+        this.onLoadSetMaxHeight();
+        this.onLoadSetPosterNames();
+        this.onLoadSetOnClickSettings();
         this.loadDriveThrough();
     }
 
@@ -136,13 +136,13 @@ class ImageDriveThrough {
      * @returns {number|string|string}
      */
     get startIndex(){
-        return this.#getStartIndex();
+        return this.getStartIndex();
     }
     set startIndex(index){
         /* Set the start index of the drive through. Valid options are integers or 'random' */
         this.drive_through.setAttribute('start-index', index);
     }
-    #getStartIndex(){
+    getStartIndex(){
         /* Gets the start-index attribute value from the drive through.
         Returns int if it was a valid number and string if it was the string 'random' */
         let start_idx = this.drive_through.getAttribute('start-index');
@@ -199,14 +199,14 @@ class ImageDriveThrough {
      */
     get dataTarget(){
         /* Gets the data-target attribute value of the drive through */
-        return this.#getDataTargetOrError();
+        return this.getDataTargetOrError();
     }
     set dataTarget(className){
         /* Set a new data target for the drive through. The data target value should be a class which your
         images are contained within (one image in each div with this class) */
-        this.#setDataTargetOrError(className);
+        this.setDataTargetOrError(className);
     }
-    #getDataTargetOrError(){
+    getDataTargetOrError(){
         /* Returns the classname of the data target of the current poster drive through. Throws
         * an error if the attribute is missing or the value doesn't return any elements. */
         let data_target = $(this.drive_through).attr('data-target');
@@ -221,7 +221,7 @@ class ImageDriveThrough {
 
         return data_target;
     }
-    #setDataTargetOrError(className){
+    setDataTargetOrError(className){
         /* Sets the data target for the drive through and checks if it is valid. */
         let check_elem = document.getElementsByClassName(className);
         if (check_elem === null || className === undefined || check_elem.length===0){
@@ -230,7 +230,7 @@ class ImageDriveThrough {
         }
         this.drive_through.setAttribute('data-target', className);
     }
-    #getPosterOrError(position){
+    getPosterOrError(position){
         /* Returns poster image element in drive through. positions are 'left', 'right', 'center'
         * 'hidden-left' and 'hidden-right' */
         if (typeof position!== 'string'){
@@ -253,7 +253,7 @@ class ImageDriveThrough {
         }
         return target_element[0];
     }
-    #getPosterIndex(poster){
+    getPosterIndex(poster){
         /* Retrieves the data-index attribute's value from a poster and returns it as an int if it is a number. */
         let idx = $(poster).attr('data-index');
         let domChoices = this.choices;
@@ -276,7 +276,7 @@ class ImageDriveThrough {
         }
         return parseInt(idx);
     }
-    #setPosterIndex(poster, index){
+    setPosterIndex(poster, index){
         /* Set the data index of given poster */
         poster.setAttribute('data-index', index.toString());
     }
@@ -385,7 +385,7 @@ class ImageDriveThrough {
     loadDriveThrough(){
         this.loadImagesByIndex(this.startIndex);
         if (this.animateOnLoad){
-            this.#animatePageLoadSlideIn();
+            this.animatePageLoadSlideIn();
         }
 
         $(this.leftPosterImageElement).addClass(this.leftRightPosterHoverClass);
@@ -397,7 +397,7 @@ class ImageDriveThrough {
      */
     get centerPoster(){
         /* Returns the active (center) poster dom element */
-        return this.#getPosterOrError('center');
+        return this.getPosterOrError('center');
     }
     /**
      * The index of the center poster.
@@ -406,11 +406,11 @@ class ImageDriveThrough {
     get centerIndex(){
         /* Returns the index of the data target currently displayed as the active (center) poster according to
         * dom.getElementsByClassName(data-target) */
-        return this.#getPosterIndex(this.centerPoster);
+        return this.getPosterIndex(this.centerPoster);
     }
     set centerIndex(index){
         /* Set the data index of the center poster */
-        this.#setPosterIndex(this.centerPoster, index)
+        this.setPosterIndex(this.centerPoster, index)
     }
 
     /**
@@ -418,7 +418,7 @@ class ImageDriveThrough {
      */
     get leftPoster(){
         /* Returns the left poster dom element */
-        return this.#getPosterOrError('left');
+        return this.getPosterOrError('left');
     }
 
     /**
@@ -428,11 +428,11 @@ class ImageDriveThrough {
     get leftIndex(){
         /* Returns the index of the data target currently displayed as the left poster according to
         * dom.getElementsByClassName(data-target) */
-        return this.#getPosterIndex(this.leftPoster);
+        return this.getPosterIndex(this.leftPoster);
     }
     set leftIndex(index){
         /* Set the data index of the left poster */
-        this.#setPosterIndex(this.leftPoster, index);
+        this.setPosterIndex(this.leftPoster, index);
     }
 
     /**
@@ -440,7 +440,7 @@ class ImageDriveThrough {
      */
     get rightPoster(){
         /* Returns the right poster dom element */
-        return this.#getPosterOrError('right');
+        return this.getPosterOrError('right');
     }
 
     /**
@@ -450,10 +450,10 @@ class ImageDriveThrough {
     get rightIndex(){
         /* Returns the index of the data target currently displayed as the right poster according to
         * dom.getElementsByClassName(data-target) */
-        return this.#getPosterIndex(this.rightPoster);
+        return this.getPosterIndex(this.rightPoster);
     }
     set rightIndex(index){
-        this.#setPosterIndex(this.rightPoster, index);
+        this.setPosterIndex(this.rightPoster, index);
     }
 
     /**
@@ -461,7 +461,7 @@ class ImageDriveThrough {
      */
     get hiddenRightPoster(){
         /* Get the hidden animation poster on the right */
-        return this.#getPosterOrError('hidden-right');
+        return this.getPosterOrError('hidden-right');
     }
 
     /**
@@ -469,7 +469,7 @@ class ImageDriveThrough {
      */
     get hiddenLeftPoster(){
         /* Get the hidden animation poster on the left */
-        return this.#getPosterOrError('hidden-left');
+        return this.getPosterOrError('hidden-left');
     }
 
     /**
@@ -496,7 +496,7 @@ class ImageDriveThrough {
         } return idx+1;
     }
 
-    #getImageElementOrError(poster){
+    getImageElementOrError(poster){
         /* Get the image element of a poster */
         let img_ele = poster.getElementsByTagName('img');
         if (img_ele===undefined || img_ele===null || img_ele.length===0){
@@ -514,7 +514,7 @@ class ImageDriveThrough {
      */
     get leftPosterImageElement(){
         /* The dom element that contains the left posters image */
-        return this.#getImageElementOrError(this.leftPoster);
+        return this.getImageElementOrError(this.leftPoster);
     }
     /**
      * The image source of the left poster.
@@ -532,7 +532,7 @@ class ImageDriveThrough {
      */
     get rightPosterImageElement(){
         /* The dom element that contains the right poster */
-        return this.#getImageElementOrError(this.rightPoster);
+        return this.getImageElementOrError(this.rightPoster);
     }
     /**
      * The image source of the right poster.
@@ -551,7 +551,7 @@ class ImageDriveThrough {
      */
     get centerPosterImageElement(){
         /* The dom element that contains the center poster */
-        return this.#getImageElementOrError(this.centerPoster);
+        return this.getImageElementOrError(this.centerPoster);
     }
 
     /**
@@ -571,7 +571,7 @@ class ImageDriveThrough {
      */
     get hiddenLeftPosterImageElement(){
         /* The dom element that contains the hidden left poster */
-        return this.#getImageElementOrError(this.hiddenLeftPoster);
+        return this.getImageElementOrError(this.hiddenLeftPoster);
     }
 
     /**
@@ -590,7 +590,7 @@ class ImageDriveThrough {
      * The img element of the hidden right poster.
      */
     get hiddenRightPosterImageElement(){
-        return this.#getImageElementOrError(this.hiddenRightPoster);
+        return this.getImageElementOrError(this.hiddenRightPoster);
     }
 
     /**
@@ -605,7 +605,7 @@ class ImageDriveThrough {
         this.hiddenRightPosterImageElement.src = url;
     }
 
-    #animatePageLoadSlideIn(){
+    animatePageLoadSlideIn(){
         /* Trigger the page load slide in animation */
         // If attribute doesn't exist
         let val="true";
@@ -643,49 +643,49 @@ class ImageDriveThrough {
             $(this).removeClass(this.animationClassLoadRightPoster);
         });
     }
-    #animateLeftPosterLeft(new_left_image){
+    animateLeftPosterLeft(new_left_image){
         /* Animate the left poster moving to the left */
         let cls = this.animationClassLeftToLeft;
         let hover = this.leftRightPosterHoverClass;
-        this.#animatePoster(this.leftPosterImageElement, new_left_image, cls, hover, 'left');
+        this.animatePoster(this.leftPosterImageElement, new_left_image, cls, hover, 'left');
     }
-    #animateLeftPosterRight(new_left_image){
+    animateLeftPosterRight(new_left_image){
         /* Animate left poster moving to the right */
         let cls = this.animationClassLeftToRight;
         let hover = this.leftRightPosterHoverClass;
-        this.#animatePoster(this.leftPosterImageElement, new_left_image, cls, hover, 'right');
+        this.animatePoster(this.leftPosterImageElement, new_left_image, cls, hover, 'right');
     }
-    #animateRightPosterLeft(new_right_image){
+    animateRightPosterLeft(new_right_image){
         /* Animate right poster moving left */
         let cls = this.animationClassRightToLeft
         let hover = this.leftRightPosterHoverClass;
-        this.#animatePoster(this.rightPosterImageElement, new_right_image, cls, hover, 'left');
+        this.animatePoster(this.rightPosterImageElement, new_right_image, cls, hover, 'left');
     }
-    #animateRightPosterRight(new_right_image){
+    animateRightPosterRight(new_right_image){
         /* Animate right poster moving right */
         let cls = this.animationClassRightToRight;
         let hover = this.leftRightPosterHoverClass;
-        this.#animatePoster(this.rightPosterImageElement, new_right_image, cls, hover, 'right');
+        this.animatePoster(this.rightPosterImageElement, new_right_image, cls, hover, 'right');
     }
-    #animateCenterPosterLeft(new_center_image){
+    animateCenterPosterLeft(new_center_image){
         /* Animate the center poster moving left */
         let cls = this.animationClassCenterToLeft;
         let hover = this.centerPosterHoverClass;
-        this.#animatePoster(this.centerPosterImageElement, new_center_image, cls, hover, 'left');
+        this.animatePoster(this.centerPosterImageElement, new_center_image, cls, hover, 'left');
     }
-    #animateCenterPosterRight(new_center_image){
+    animateCenterPosterRight(new_center_image){
         /* Animate the center poster moving right */
         let cls = this.animationClassCenterToRight;
         let hover = this.centerPosterHoverClass;
-        this.#animatePoster(this.centerPosterImageElement, new_center_image, cls, hover, 'right');
+        this.animatePoster(this.centerPosterImageElement, new_center_image, cls, hover, 'right');
     }
-    #animatePoster(poster_image_ele, new_image, cls, hover_cls, direction){
+    animatePoster(poster_image_ele, new_image, cls, hover_cls, direction){
         /* Animate the given poster */
         void poster_image_ele.offsetWidth;
         poster_image_ele.classList.remove(hover_cls);
         //poster_image_ele.classList.remove(cls);
         poster_image_ele.classList.add(cls);
-        this.#applyAnimationTime(poster_image_ele, direction);
+        this.applyAnimationTime(poster_image_ele, direction);
         $(poster_image_ele).on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function (){
             if ($(this).hasClass(cls)){
                 $(this).removeClass(cls);
@@ -695,13 +695,13 @@ class ImageDriveThrough {
         })
 
     }
-    #animateHiddenLeftPoster(new_hidden_left_image){
+    animateHiddenLeftPoster(new_hidden_left_image){
         /* Animate the hidden left poster coming in from the left */
         let cls = this.animationClassHiddenToLeft;
         let new_poster_image = this.hiddenLeftPosterImageElement;
         void new_poster_image.offsetWidth;
         new_poster_image.classList.add(cls); // Adding animation class
-        this.#applyAnimationTime(new_poster_image, 'right');
+        this.applyAnimationTime(new_poster_image, 'right');
         new_poster_image.src = new_hidden_left_image; // Set new image before animating
         $(new_poster_image).on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function (){
             if ($(new_poster_image).hasClass(cls)){
@@ -710,13 +710,13 @@ class ImageDriveThrough {
                 }
         }.bind(this));
     }
-    #animateHiddenRightPoster(new_hidden_right_image){
+    animateHiddenRightPoster(new_hidden_right_image){
         /* Animate the hidden right poster coming in from the right */
         let cls = this.animationClassHiddenToRight;
         let new_poster_image = this.hiddenRightPosterImageElement;
         void new_poster_image.offsetWidth;
         new_poster_image.classList.add(cls); // Adding animation class
-        this.#applyAnimationTime(new_poster_image, 'left');
+        this.applyAnimationTime(new_poster_image, 'left');
         new_poster_image.src = new_hidden_right_image; // Set new image before animating
         $(new_poster_image).on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function (){
             if ($(new_poster_image).hasClass(cls)){
@@ -725,25 +725,25 @@ class ImageDriveThrough {
             }
         }.bind(this));
     }
-    #animateShift(direction, new_images){
+    animateShift(direction, new_images){
         /* Animates a shift in either direction. Directions are left and right.
          Takes a list with 3 images [new left, new center, new right] */
         if (direction.toLowerCase()==='left'){
             this.drive_through.setAttribute('animating', 'true');
-            this.#animateLeftPosterLeft(new_images[0]);
-            this.#animateCenterPosterLeft(new_images[1]);
-            this.#animateRightPosterLeft(new_images[2]);
-            this.#animateHiddenRightPoster(new_images[2]);
+            this.animateLeftPosterLeft(new_images[0]);
+            this.animateCenterPosterLeft(new_images[1]);
+            this.animateRightPosterLeft(new_images[2]);
+            this.animateHiddenRightPoster(new_images[2]);
             if (this.hasModifiedAnimationTime || this.requestedAnimationReset){
                 this.animationTimeAdjustedLeft = true;
             }
         }
         else if (direction.toLowerCase()==='right'){
             this.drive_through.setAttribute('animating', 'true');
-            this.#animateLeftPosterRight(new_images[0]);
-            this.#animateCenterPosterRight(new_images[1]);
-            this.#animateRightPosterRight(new_images[2]);
-            this.#animateHiddenLeftPoster(new_images[0]);
+            this.animateLeftPosterRight(new_images[0]);
+            this.animateCenterPosterRight(new_images[1]);
+            this.animateRightPosterRight(new_images[2]);
+            this.animateHiddenLeftPoster(new_images[0]);
             if (this.hasModifiedAnimationTime || this.requestedAnimationReset){
                 this.animationTimeAdjustedRight = true;
             }
@@ -782,7 +782,7 @@ class ImageDriveThrough {
      */
     get heightSetting(){
         /* Get the fixed-max-height attribute of the drive through */
-        return this.#getHeightSetting();
+        return this.getHeightSetting();
     }
     set heightSetting(boolFixed) {
         /* Set the fixed-max-height attribute of the drive through. */
@@ -817,7 +817,7 @@ class ImageDriveThrough {
         return ele_final_height;
     }
 
-    #getHeightSetting(){
+    getHeightSetting(){
         /* Get the fixed-max-height attribute from the drive through */
         let set_fixed = this.drive_through.getAttribute('fixed-max-height');
         if (set_fixed===undefined || set_fixed===null){
@@ -843,7 +843,7 @@ class ImageDriveThrough {
         this.height = this.maxActiveHeight;
     }
 
-    #onLoadSetMaxHeight(){
+    onLoadSetMaxHeight(){
         if (this.heightSetting){
             this.setFixedMaxHeight();
         }
@@ -860,7 +860,7 @@ class ImageDriveThrough {
             }.bind(this));
         }.bind(this));
     }
-    #onLoadSetPosterNames(){
+    onLoadSetPosterNames(){
         /* Give the posters a name on page load. */
         this.leftPosterImageElement.posterName = 'leftPoster';
         this.rightPosterImageElement.posterName = 'rightPoster';
@@ -868,7 +868,7 @@ class ImageDriveThrough {
         this.hiddenLeftPosterImageElement.posterName = 'hiddenLeftPoster';
         this.hiddenRightPosterImageElement.posterName = 'hiddenRightPoster';
     }
-    #onLoadSetOnClickSettings(){
+    onLoadSetOnClickSettings(){
         /* Read the shift-on-click settings from the left and right poster on page load. If set to true,
         * when left and right posters are pressed they shift to either side. */
         let left_poster = this.leftPoster;
@@ -901,7 +901,7 @@ class ImageDriveThrough {
         }
     }
 
-    #getChoiceImage(index){
+    getChoiceImage(index){
         /* Get the ith data-target's image according to dom.getElementsByClassName(data-target) */
         let choices = this.choices;
         if (choices.length-1<index || index<0){
@@ -916,9 +916,9 @@ class ImageDriveThrough {
     getImages(){
         /* Get images from data target according to the data-index attribute of the left, center and right poster.
         * Returns a list of strings -> [src left, src center, src right] */
-        return [this.#getChoiceImage(this.leftIndex),
-                this.#getChoiceImage(this.centerIndex),
-                this.#getChoiceImage(this.rightIndex)]
+        return [this.getChoiceImage(this.leftIndex),
+                this.getChoiceImage(this.centerIndex),
+                this.getChoiceImage(this.rightIndex)]
     }
 
     /**
@@ -975,7 +975,7 @@ class ImageDriveThrough {
         /* Shifts the poster rotation one to the left. */
         this.shiftPosterIndexes('left');
         let images = this.getImages();
-        this.#animateShift('left', images);
+        this.animateShift('left', images);
     }
 
     /**
@@ -986,7 +986,7 @@ class ImageDriveThrough {
         /* Shifts the poster rotation one to the right. */
         this.shiftPosterIndexes('right');
         let images = this.getImages();
-        this.#animateShift('right', images);
+        this.animateShift('right', images);
     }
 
     /**
@@ -1050,7 +1050,7 @@ class ImageDriveThrough {
         this.requestedAnimationReset = true;
         this.animationTime = 0;
     }
-    #applyAnimationTime(poster_img_element, direction){
+    applyAnimationTime(poster_img_element, direction){
         /* Applies the modified animation time if it has been set. The ratio between delay and animation time will be
         * accounted for. This is a helper function for the shifting methods. */
         let img_element = $(poster_img_element);
@@ -1061,8 +1061,8 @@ class ImageDriveThrough {
             // Add custom animation time
             let animationTime = this.animationTime
 
-            let delay = this.#getDefaultPosterAnimationDelay(poster_img_element, direction);
-            let time = this.#getDefaultPosterAnimationTime(poster_img_element, direction);
+            let delay = this.getDefaultPosterAnimationDelay(poster_img_element, direction);
+            let time = this.getDefaultPosterAnimationTime(poster_img_element, direction);
 
             if (delay===null || delay===undefined || delay===0 || delay ===''){
                 img_element.css('animation-duration', animationTime.toString()+"s");
@@ -1086,17 +1086,17 @@ class ImageDriveThrough {
         // If reset to default request
         else if (this.requestedAnimationReset && !isAdjusted){
             img_element.css('animation-duration',
-                this.#getDefaultPosterAnimationTime(poster_img_element, direction).toString()+"s");
+                this.getDefaultPosterAnimationTime(poster_img_element, direction).toString()+"s");
             img_element.css('animation-delay',
-                this.#getDefaultPosterAnimationDelay(poster_img_element, direction).toString()+"s");
+                this.getDefaultPosterAnimationDelay(poster_img_element, direction).toString()+"s");
 
         }
     }
-    #getDefaultPosterAnimationTime(posterImgEle, direction){
+    getDefaultPosterAnimationTime(posterImgEle, direction){
         /* Get the default animation timing in the direction given. */
         return this.defaultAnimationTimings[posterImgEle.posterName][direction]['animation-time'];
     }
-    #getDefaultPosterAnimationDelay(posterImgEle, direction){
+    getDefaultPosterAnimationDelay(posterImgEle, direction){
         /* Get the default animation timing in the direction given. */
         return this.defaultAnimationTimings[posterImgEle.posterName][direction]['animation-delay'];
     }
