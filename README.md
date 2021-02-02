@@ -15,9 +15,9 @@ Note that the fiddle demo does not automatically resize the slider's max height 
 
 ### CDN'S
 1. Stylesheet\
-`<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/hauks96/drive-through-image-slider/posterDriveThrough/drive_through.css">`
+`<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/hauks96/drive-through-image-slider/posterDriveThrough/v1.1/drive_through.css">`
 2. Script\
-`<script src="https://cdn.jsdelivr.net/gh/hauks96/drive-through-image-slider/posterDriveThrough/drive_through.js"></script>`
+`<script src="https://cdn.jsdelivr.net/gh/hauks96/drive-through-image-slider/posterDriveThrough/v1.1/drive_through.js"></script>`
 
 ### Dependencies
 1. [JQuery slim-min](https://code.jquery.com/) or greater\
